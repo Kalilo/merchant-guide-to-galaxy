@@ -53,3 +53,5 @@ to execute
 ruby ./program.rb assets/test_input.txt
 
 ```
+
+repl mode will evaluate lines given to the program one by one. to exit type `exit`.
