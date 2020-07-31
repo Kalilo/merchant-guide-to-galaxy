@@ -1,3 +1,5 @@
+reqire 'sentance_details'
+
 module SentanceIdentifier
   ALIS_STRICTURE_REGEX = /^\s*(\w+)\s(is|are)\s(\w+)\s*$/
 
@@ -16,17 +18,20 @@ module SentanceIdentifier
   def resolve_alias_sentance(sentance)
     s = split_alias_sentance(sentance)
 
-    [ s[1], s[3] ]
+    SentanceDetails.new(nil, s[1], s[3])
   end
 
   def resolve_definition_sentance(aliases, sentance)
-    s = split_alias_sentance(sub_in_aliases(aliases, sentance))
+    s = split_definition_sentance(sub_in_aliases(aliases, sentance))
 
-    [ clean_numerals(s[1]), s[2], s[4] ]
+    SentanceDetails.new(s[4], clean_numerals(s[1]), s[2])
   end
 
-  def resolve_question_sentance(aliases, definitions, sentance)
-    #TODO
+  def resolve_question_sentance(aliases, sentance)
+    subject = extract_question_subject(sentance)
+    qa = extract_quantity_and_amount(subject)
+
+    SentanceDetails.new(qa[1], qa[0], subject)
   end
 
   private
@@ -43,6 +48,32 @@ module SentanceIdentifier
     aliases.each { |k, v| s.gsub!(k, v) }
 
     s
+  end
+
+  def extract_question_subject(sentance)
+    split_question_sentance(sentance)[4]
+  end
+
+  def extract_quantity_and_amount(sentance)
+    s = split_quantity_and_amount(sentance).reject { |c| c.empty? }
+
+    [extract_quantity, extract_amount]
+  end
+
+  def extract_quantity(split_sentance)
+    split_sentance.size > 1 ? split_sentance.first : 'I'
+  end
+
+  def extract_amount(split_sentance)
+    split_sentance.last
+  end
+
+  def split_question_sentance(sentance)
+    sentance.split /((how much)|(how many))\s(Credits\s)*(is|are)\s((\w+\s*)+)\b/
+  end
+
+  def split_quantity_and_amount(sentance)
+    sentance.split /(([IVXLCDM]\s*)+)*\s*\b(\w+)*/
   end
 
   def split_definition_sentance(sentance)

@@ -12,15 +12,15 @@ class CreditTranslator
   def add_alias(alis_sentance)
     a = split_alias_sentance(alis_sentance)
 
-    raise 'Invalid alis value' unless valid_number?(a[1])
+    raise 'Invalid alis value' unless valid_number?(a.quantity)
 
-    @aliases[a[0]] = a[1]
+    @aliases[a.subject] = a.quantity
   end
 
   def add_definition(definition_sentance)
-    a = split_definition_sentance(definition_sentance)
+    d = split_definition_sentance(definition_sentance)
 
-    raise 'Invalid definition value' unless valid_number?(a[0])
+    raise 'Invalid definition value' unless valid_number?(a.quantity)
 
     @definitions[a[1]] = calc_definition_value(a[0], a[3])
   end
