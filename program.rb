@@ -5,7 +5,8 @@ $LOAD_PATH.unshift File.join(__dir__, 'srcs')
 require 'evaluator'
 require 'pry'
 
-filename = ARGV[0]
-evaluator = Evaluator.new
-
-filename.nil? ? evaluator.repl : evaluator.run_file(filename)
+if ARGV.empty?
+  Evaluator.new.repl
+else
+  ARGV.each { |filename| Evaluator.new.run_file(filename) }
+end
