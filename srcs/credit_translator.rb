@@ -1,3 +1,6 @@
+require 'numerals'
+require 'sentance_identifier'
+
 class CreditTranslator
   include Numerals
   include SentanceIdentifier

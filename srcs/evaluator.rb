@@ -1,4 +1,5 @@
-reqire 'credit_translator'
+require 'credit_translator'
+require 'sentance_identifier'
 
 class Evaluator
   include SentanceIdentifier

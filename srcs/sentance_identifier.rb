@@ -1,4 +1,4 @@
-reqire 'sentance_details'
+require 'sentance_details'
 
 module SentanceIdentifier
   ALIS_STRICTURE_REGEX = /^\s*(\w+)\s(is|are)\s(\w+)\s*$/
