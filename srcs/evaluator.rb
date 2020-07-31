@@ -21,7 +21,7 @@ class Evaluator
       line = gets.strip!
 
       break if line == 'exit'
-      puts is_alias_sentance?(line)
+
       evaluate_line(line) rescue no_idea
     end
   end
