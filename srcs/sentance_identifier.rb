@@ -71,7 +71,7 @@ module SentanceIdentifier
   end
 
   def split_question_sentance(sentance)
-    sentance.split(/is\s((\w+\s)+)/)
+    sentance.split(/is\s((\w+\s*)+)/)
   end
 
   def split_quantity_and_amount(sentance)
