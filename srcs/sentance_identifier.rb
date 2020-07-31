@@ -10,7 +10,7 @@ module SentanceIdentifier
   end
 
   def definition_sentance?(sentance)
-    sentance =~ /^(\s*\w+\s)+((is|are)\s(\d+)(\sCredits)\s*)$/
+    !!(sentance =~ /^(\s*\w+\s)+((is|are)\s(\d+)(\sCredits)\s*)$/)
   end
 
   def question_sentance?(sentance)
