@@ -46,7 +46,7 @@ I have no idea what you are talking about
 
 # The Solution
 
-This has been written in ruby 2.6 it will accept input by a program argument, or it will go into repl mode if no argument is provided
+This has been written in ruby 2.6 it will run from either a file name provided as the program arguments, or standard input (repl mode) if none is provided.
 
 to execute
 ```
