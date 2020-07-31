@@ -51,7 +51,7 @@ module SentanceIdentifier
   end
 
   def extract_question_subject(sentance)
-    split_question_sentance(sentance)[4]
+    split_question_sentance(sentance)[1].strip
   end
 
   def extract_quantity_and_amount(sentance)
@@ -69,7 +69,7 @@ module SentanceIdentifier
   end
 
   def split_question_sentance(sentance)
-    sentance.split /((how much)|(how many))\s(Credits\s)*(is|are)\s((\w+\s*)+)\b/
+    sentance.split /is\s((\w+\s)+)/
   end
 
   def split_quantity_and_amount(sentance)

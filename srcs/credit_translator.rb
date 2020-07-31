@@ -39,7 +39,7 @@ class CreditTranslator
   private
 
   def calc_definition_value(quantity, amount)
-    amount.to_i / resolve_number(quantity)
+    amount.to_f / resolve_number(quantity)
   end
 
   def calc_question_value(quantity, amount)
@@ -51,6 +51,10 @@ class CreditTranslator
   end
 
   def gen_answer_string(subject, value)
-    "#{subject} is #{value}"
+    "#{subject} is #{strip_trailing_zero(value)}"
+  end
+
+  def strip_trailing_zero(n)
+    n.to_s.sub(/\.?0+$/, '')
   end
 end
