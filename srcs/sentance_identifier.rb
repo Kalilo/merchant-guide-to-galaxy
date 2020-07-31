@@ -1,7 +1,7 @@
 require 'sentance_details'
 
 module SentanceIdentifier
-  ALIS_STRICTURE_REGEX = /^\s*(\w+)\s(is|are)\s(\w+)\s*$/
+  ALIS_STRICTURE_REGEX = /^\s*(\w+)\s(is|are)\s(\w+)\s*$/.freeze
 
   def is_alias_sentance?(sentance)
     !!(sentance =~ ALIS_STRICTURE_REGEX)
@@ -69,15 +69,15 @@ module SentanceIdentifier
   end
 
   def split_question_sentance(sentance)
-    sentance.split /is\s((\w+\s)+)/
+    sentance.split(/is\s((\w+\s)+)/)
   end
 
   def split_quantity_and_amount(sentance)
-    sentance.split /(([IVXLCDM]\s*)+)*\s*\b(\w+)*/
+    sentance.split(/(([IVXLCDM]\s*)+)*\s*\b(\w+)*/)
   end
 
   def split_definition_sentance(sentance)
-    sentance.split /([IVXLCDM\s]+)\s(\w+)\s(is|are)\s(\d+)/
+    sentance.split(/([IVXLCDM\s]+)\s(\w+)\s(is|are)\s(\d+)/)
   end
 
   def split_alias_sentance(sentance)

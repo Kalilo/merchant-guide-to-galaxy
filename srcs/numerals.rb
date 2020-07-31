@@ -1,5 +1,5 @@
 module Numerals
-  VALUES = { i: 1, v: 5, x: 10, l: 50, c: 100, d: 500, m: 1000 }
+  VALUES = { i: 1, v: 5, x: 10, l: 50, c: 100, d: 500, m: 1000 }.freeze
   LETTERS = VALUES.keys.map { |k| k.to_s.upcase }
 
   def valid_number?(number)

@@ -12,7 +12,11 @@ class Evaluator
     file = readfile(filename)
 
     file.each do |line|
-      evaluate_line(line) rescue no_idea
+      begin
+        evaluate_line(line)
+      rescue StandardError
+        no_idea
+      end
     end
   end
 
@@ -22,12 +26,15 @@ class Evaluator
 
       break if line == 'exit'
 
-      evaluate_line(line) rescue no_idea
+      begin
+        evaluate_line(line)
+      rescue StandardError
+        no_idea
+      end
     end
   end
 
   def evaluate_line(line)
-
     if is_alias_sentance?(line)
       @credit_translator.add_alias(line)
     elsif is_definition_sentance?(line)
