@@ -35,7 +35,7 @@ class CreditTranslator
 
     value = calc_question_value(q.quantity, q.amount)
 
-    gen_answer_string(q.subject, value)
+    gen_answer_string(q.subject, value, question_sentance)
   end
 
   private
@@ -52,8 +52,12 @@ class CreditTranslator
     @definitions[amount] || 1
   end
 
-  def gen_answer_string(subject, value)
-    "#{subject} is #{strip_trailing_zero(value)}"
+  def gen_answer_string(subject, value, question)
+    if !!(question =~ /[cC]redits/)
+      "#{subject} is #{strip_trailing_zero(value)} Credits"
+    else
+      "#{subject} is #{strip_trailing_zero(value)}"
+    end
   end
 
   def strip_trailing_zero(number)
