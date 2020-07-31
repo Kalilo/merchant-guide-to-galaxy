@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'credit_translator'
 require 'sentance_identifier'
 
@@ -35,11 +37,11 @@ class Evaluator
   end
 
   def evaluate_line(line)
-    if is_alias_sentance?(line)
+    if alias_sentance?(line)
       @credit_translator.add_alias(line)
-    elsif is_definition_sentance?(line)
+    elsif definition_sentance?(line)
       @credit_translator.add_definition(line)
-    elsif is_question_sentance?(line)
+    elsif question_sentance?(line)
       puts @credit_translator.answer_question(line)
     else
       puts no_idea

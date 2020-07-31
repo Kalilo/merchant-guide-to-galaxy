@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SentanceDetails
   attr_accessor :amount, :quantity, :subject
 

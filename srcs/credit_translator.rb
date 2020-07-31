@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'numerals'
 require 'sentance_identifier'
 
@@ -54,7 +56,7 @@ class CreditTranslator
     "#{subject} is #{strip_trailing_zero(value)}"
   end
 
-  def strip_trailing_zero(n)
-    n.to_s.sub(/\.?0+$/, '')
+  def strip_trailing_zero(number)
+    number.to_s.sub(/\.?0+$/, '')
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Numerals
   VALUES = { i: 1, v: 5, x: 10, l: 50, c: 100, d: 500, m: 1000 }.freeze
   LETTERS = VALUES.keys.map { |k| k.to_s.upcase }
@@ -36,14 +38,14 @@ module Numerals
   end
 
   def split_components(number)
-    number.split(/(I[VX]|X[LC]|C[XM])|([IVXLCDM])/).reject { |c| c.empty? }
+    number.split(/(I[VX]|X[LC]|C[XM])|([IVXLCDM])/).reject(&:empty?)
   end
 
   def valid_repetitions?(number)
-    !(number =~ /I{4,}|X{4,}|C{4,}|M{4,}|D{2,}|L{2,}|V{2,}/)
+    number !~ /I{4,}|X{4,}|C{4,}|M{4,}|D{2,}|L{2,}|V{2,}/
   end
 
   def valid_subtractions?(number)
-    !(number =~ /I[LCDM]|X[DM]|V[XLCDM]|L[CDM]|DM|I{2,}[VX]|X{2,}[LC]|C{2,}[DM]/)
+    number !~ /I[LCDM]|X[DM]|V[XLCDM]|L[CDM]|DM|I{2,}[VX]|X{2,}[LC]|C{2,}[DM]/
   end
 end

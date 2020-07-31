@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'sentance_details'
 
 module SentanceIdentifier
   ALIS_STRICTURE_REGEX = /^\s*(\w+)\s(is|are)\s(\w+)\s*$/.freeze
 
-  def is_alias_sentance?(sentance)
+  def alias_sentance?(sentance)
     !!(sentance =~ ALIS_STRICTURE_REGEX)
   end
 
-  def is_definition_sentance?(sentance)
-    !!(sentance =~ /^(\s*\w+\s)+((is|are)\s(\d+)(\sCredits)\s*)$/)
+  def definition_sentance?(sentance)
+    sentance =~ /^(\s*\w+\s)+((is|are)\s(\d+)(\sCredits)\s*)$/
   end
 
-  def is_question_sentance?(sentance)
+  def question_sentance?(sentance)
     !!(sentance =~ /((how much)|(how many))\s(Credits\s)*(is|are)\s(\w+\s*)+\?*/)
   end
 
@@ -55,7 +57,7 @@ module SentanceIdentifier
   end
 
   def extract_quantity_and_amount(sentance)
-    s = split_quantity_and_amount(sentance).reject { |c| c.empty? }
+    s = split_quantity_and_amount(sentance).reject(&:empty?)
 
     [extract_quantity(s), extract_amount(s)]
   end
