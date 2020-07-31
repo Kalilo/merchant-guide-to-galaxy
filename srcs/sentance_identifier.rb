@@ -39,7 +39,7 @@ module SentanceIdentifier
   private
 
   def clean_numerals(numerals)
-    numerals = 'I' if numerals.empty?
+    numerals = 'I' if numerals.nil? || numerals.empty?
 
     numerals.gsub(/\s/, '')
   end
@@ -79,7 +79,7 @@ module SentanceIdentifier
   end
 
   def split_definition_sentance(sentance)
-    sentance.split(/([IVXLCDM\s]+)\s(\w+)\s(is|are)\s(\d+)/)
+    sentance.match(/([IVXLCDM\s]+)*\b(\w+)\s(is|are)\s(\d+)/)
   end
 
   def split_alias_sentance(sentance)
