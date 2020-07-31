@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'minitest/autorun'
 require 'credit_translator'
 require 'pry'
@@ -18,6 +16,7 @@ class CreditTranslatorTest < Minitest::Test
 
     assert ct.answer_question('how much is Silver') == 'Silver is 34'
     assert ct.answer_question('how many Credits is IV Gold') == 'IV Gold is 200 Credits'
+    assert ct.answer_question('how many Credits is glob Gold') == 'glob Gold is 50 Credits'
   end
 
   private

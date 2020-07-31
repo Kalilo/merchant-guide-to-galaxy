@@ -53,10 +53,10 @@ class CreditTranslator
   end
 
   def gen_answer_string(subject, value, question)
-    if !!(question =~ /[cC]redits/)
-      "#{subject} is #{strip_trailing_zero(value)} Credits"
-    else
+    if question !~ /[cC]redits/
       "#{subject} is #{strip_trailing_zero(value)}"
+    else
+      "#{subject} is #{strip_trailing_zero(value)} Credits"
     end
   end
 
