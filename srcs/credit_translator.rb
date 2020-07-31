@@ -4,7 +4,7 @@ class CreditTranslator
 
   attr_accessor :aliases, :definitions
 
-  def initialize(credits)
+  def initialize
     @aliases = {}
     @definitions = {}
   end
