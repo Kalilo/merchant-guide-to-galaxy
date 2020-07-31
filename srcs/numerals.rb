@@ -22,7 +22,7 @@ module Numerals
   private
 
   def resolve_part(part)
-    part.size == 2 ? resolve_subtractive_pair(part) : resolve_letter
+    part.size == 2 ? resolve_subtractive_pair(part) : resolve_letter(part)
   end
 
   def resolve_subtractive_pair(number)

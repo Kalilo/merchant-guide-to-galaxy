@@ -21,15 +21,16 @@ class CreditTranslator
   end
 
   def add_definition(definition_sentance)
-    d = resolve_definition_sentance(definition_sentance)
+    d = resolve_definition_sentance(@aliases, definition_sentance)
 
-    raise 'Invalid definition value' unless valid_number?(a.quantity)
+    raise 'Invalid definition value' unless valid_number?(d.quantity)
 
-    @definitions[a[1]] = calc_definition_value(a[0], a[3])
+    @definitions[d.subject] = calc_definition_value(d.quantity, d.amount)
   end
 
   def answer_question(question_sentance)
-    q = resolve_question_sentance(question_sentance)
+    q = resolve_question_sentance(@aliases, question_sentance)
+
     value = calc_question_value(q.quantity, q.amount)
 
     gen_answer_string(q.subject, value)
@@ -38,7 +39,7 @@ class CreditTranslator
   private
 
   def calc_definition_value(quantity, amount)
-    amount.to_f / resolve_number(quantity)
+    amount.to_i / resolve_number(quantity)
   end
 
   def calc_question_value(quantity, amount)

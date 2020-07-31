@@ -3,7 +3,7 @@ class SentanceDetails
 
   def initialize(amount, quantity, subject)
     @amount = amount
-    @subject = subject
     @quantity = quantity
+    @subject = subject
   end
 end
