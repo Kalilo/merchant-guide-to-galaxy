@@ -20,6 +20,14 @@ class CreditTranslator
   def add_definition(definition_sentance)
     a = split_definition_sentance(definition_sentance)
 
-    raise 'Invalid definition value'
+    raise 'Invalid definition value' unless valid_number?(a[0])
+
+    @definitions[a[1]] = calc_definition_value(a[0], a[3])
+  end
+
+  private
+
+  def calc_definition_value(quantity, amount)
+    amount.to_f / resolve_number(quantity)
   end
 end
